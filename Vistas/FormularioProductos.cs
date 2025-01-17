@@ -96,7 +96,7 @@ namespace GestiónInventario.Vistas
                 Proveedor = Proveedor.Text
             };
 
-            // Actualizar el producto en la base de datos
+            // Actualizar en la base de datos
             try
             {
                 ProductoController.EditarProducto(productoEditado);
@@ -119,7 +119,7 @@ namespace GestiónInventario.Vistas
                 return;
             }
 
-            // Obtener la fila seleccionada
+            // Obtener la fila 
             DataGridViewRow filaSeleccionada = Productos.SelectedRows[0];
             string codigoProducto = filaSeleccionada.Cells["CodigoProducto"].Value.ToString();
             DialogResult confirmacion = MessageBox.Show($"¿Está seguro de eliminar el producto con código {codigoProducto}?",
@@ -158,8 +158,8 @@ namespace GestiónInventario.Vistas
             Nombre.Clear();
             Precio.Clear();
             Existencia.Clear();
-            Categoria.SelectedIndex = -1; // Deseleccionar categoría
-            Proveedor.SelectedIndex = -1; // Deseleccionar proveedor
+            Categoria.Clear();
+            Proveedor.Clear();
         }
 
         private void Productos_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -181,37 +181,51 @@ namespace GestiónInventario.Vistas
 
         private void Consultar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(Consulta.Text) || string.IsNullOrWhiteSpace(Consulta.Text))
+            // Si el TextBox está vacío, mostrar toda la tabla
+            if (string.IsNullOrWhiteSpace(Consulta.Text))
             {
-                MessageBox.Show("Por favor, seleccione un criterio y proporcione un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Productos.DataSource = null;
+                Productos.DataSource = ProductoController.ObtenerProductos();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(Consulta.Text))
+            {
+                MessageBox.Show("Por favor, seleccione un criterio válido para la consulta.",
+                                "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             string criterio = Consulta.Text;
             string valor = Consulta.Text;
+
             try
             {
                 List<Producto> productos;
-                if (criterio == "Categoría")
+                if (criterio == "Categoria")
                 {
                     productos = ProductoController.ConsultarPorCategoria(valor);
                 }
-                else // criterio == "Proveedor"
+                else if (criterio == "Proveedor")
                 {
                     productos = ProductoController.ConsultarPorProveedor(valor);
                 }
-
+                else
+                {
+                    MessageBox.Show("Seleccione un criterio válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 Productos.DataSource = null; // Limpiar
                 Productos.DataSource = productos;
-
                 if (productos.Count == 0)
                 {
-                    MessageBox.Show("No se encontraron productos con el criterio proporcionado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No se encontraron productos con el criterio proporcionado.",
+                                    "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al realizar la consulta: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al realizar la consulta: {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -221,7 +235,7 @@ namespace GestiónInventario.Vistas
             {
                 List<Producto> productos = ProductoController.ReporteStockBajo();
 
-                Productos.DataSource = null; // Limpiar
+                Productos.DataSource = null;
                 Productos.DataSource = productos;
 
                 if (productos.Count == 0)
@@ -280,6 +294,16 @@ namespace GestiónInventario.Vistas
                     MessageBox.Show($"Error al exportar los datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

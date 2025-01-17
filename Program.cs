@@ -13,7 +13,7 @@ namespace GestiónInventario
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Vistas.FormularioInicio());
+            Application.Run(new Vistas.FormularioProductos());
         }
     }
 }

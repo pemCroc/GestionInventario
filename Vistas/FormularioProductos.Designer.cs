@@ -1,0 +1,239 @@
+﻿namespace GestiónInventario.Vistas
+{
+    partial class FormularioProductos
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.label1 = new System.Windows.Forms.Label();
+            this.Nombre = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.Codigo = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.Precio = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.Existencia = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.Categoria = new System.Windows.Forms.ComboBox();
+            this.Proveedor = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.Productos = new System.Windows.Forms.DataGridView();
+            this.Agregar = new System.Windows.Forms.Button();
+            this.Editar = new System.Windows.Forms.Button();
+            this.Eliminar = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.Productos)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(14, 44);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(110, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Nombre del Producto:";
+            // 
+            // Nombre
+            // 
+            this.Nombre.Location = new System.Drawing.Point(17, 60);
+            this.Nombre.Name = "Nombre";
+            this.Nombre.Size = new System.Drawing.Size(100, 20);
+            this.Nombre.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(140, 44);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(104, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Código de Producto:";
+            // 
+            // Codigo
+            // 
+            this.Codigo.Location = new System.Drawing.Point(143, 60);
+            this.Codigo.Name = "Codigo";
+            this.Codigo.Size = new System.Drawing.Size(100, 20);
+            this.Codigo.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(307, 44);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(40, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Precio:";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // Precio
+            // 
+            this.Precio.Location = new System.Drawing.Point(274, 60);
+            this.Precio.Name = "Precio";
+            this.Precio.Size = new System.Drawing.Size(100, 20);
+            this.Precio.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(422, 44);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(58, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Existencia:";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // Existencia
+            // 
+            this.Existencia.Location = new System.Drawing.Point(400, 60);
+            this.Existencia.Name = "Existencia";
+            this.Existencia.Size = new System.Drawing.Size(100, 20);
+            this.Existencia.TabIndex = 7;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(554, 44);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(57, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Categoría:";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // Categoria
+            // 
+            this.Categoria.FormattingEnabled = true;
+            this.Categoria.Location = new System.Drawing.Point(524, 60);
+            this.Categoria.Name = "Categoria";
+            this.Categoria.Size = new System.Drawing.Size(121, 21);
+            this.Categoria.TabIndex = 9;
+            // 
+            // Proveedor
+            // 
+            this.Proveedor.FormattingEnabled = true;
+            this.Proveedor.Location = new System.Drawing.Point(662, 60);
+            this.Proveedor.Name = "Proveedor";
+            this.Proveedor.Size = new System.Drawing.Size(121, 21);
+            this.Proveedor.TabIndex = 11;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(693, 44);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(59, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Proveedor:";
+            // 
+            // Productos
+            // 
+            this.Productos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Productos.Location = new System.Drawing.Point(18, 109);
+            this.Productos.Name = "Productos";
+            this.Productos.Size = new System.Drawing.Size(356, 285);
+            this.Productos.TabIndex = 12;
+            this.Productos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Productos_CellContentClick);
+            // 
+            // Agregar
+            // 
+            this.Agregar.Location = new System.Drawing.Point(400, 109);
+            this.Agregar.Name = "Agregar";
+            this.Agregar.Size = new System.Drawing.Size(383, 54);
+            this.Agregar.TabIndex = 13;
+            this.Agregar.Text = "Agregar Producto";
+            this.Agregar.UseVisualStyleBackColor = true;
+            this.Agregar.Click += new System.EventHandler(this.Agregar_Click);
+            // 
+            // Editar
+            // 
+            this.Editar.Location = new System.Drawing.Point(400, 219);
+            this.Editar.Name = "Editar";
+            this.Editar.Size = new System.Drawing.Size(383, 54);
+            this.Editar.TabIndex = 14;
+            this.Editar.Text = "Editar Producto";
+            this.Editar.UseVisualStyleBackColor = true;
+            this.Editar.Click += new System.EventHandler(this.Editar_Click);
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.Location = new System.Drawing.Point(400, 328);
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.Size = new System.Drawing.Size(383, 54);
+            this.Eliminar.TabIndex = 15;
+            this.Eliminar.Text = "Eliminar Producto";
+            this.Eliminar.UseVisualStyleBackColor = true;
+            this.Eliminar.Click += new System.EventHandler(this.Eliminar_Click);
+            // 
+            // FormularioProductos
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Eliminar);
+            this.Controls.Add(this.Editar);
+            this.Controls.Add(this.Agregar);
+            this.Controls.Add(this.Productos);
+            this.Controls.Add(this.Proveedor);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.Categoria);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.Existencia);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.Precio);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.Codigo);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.Nombre);
+            this.Controls.Add(this.label1);
+            this.Name = "FormularioProductos";
+            this.Text = "FormularioProductos";
+            this.Load += new System.EventHandler(this.FormularioProductos_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.Productos)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox Nombre;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox Codigo;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox Precio;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox Existencia;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox Categoria;
+        private System.Windows.Forms.ComboBox Proveedor;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView Productos;
+        private System.Windows.Forms.Button Agregar;
+        private System.Windows.Forms.Button Editar;
+        private System.Windows.Forms.Button Eliminar;
+    }
+}

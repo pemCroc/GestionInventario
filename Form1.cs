@@ -16,11 +16,12 @@ namespace GestiónInventario
         public Form1()
         {
             InitializeComponent();
+
         }
 
         public class Database
         {
-            private static string connectionString = @"Data Source=Inventario.db;Version=3;";
+            private static string connectionString = $@"Data Source=Inventario.db;Version=3;";
 
             public static SQLiteConnection GetConnection()
             {

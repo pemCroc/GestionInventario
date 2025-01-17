@@ -77,7 +77,36 @@ namespace GestiónInventario.Vistas
 
         private void Eliminar_Click(object sender, EventArgs e)
         {
+            if (Productos.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleccione un producto para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            // Obtener la fila seleccionada
+            DataGridViewRow filaSeleccionada = Productos.SelectedRows[0];
+            string codigoProducto = filaSeleccionada.Cells["CodigoProducto"].Value.ToString();
+
+            // Confirmar eliminación
+            DialogResult confirmacion = MessageBox.Show($"¿Está seguro de eliminar el producto con código {codigoProducto}?",
+                                                        "Confirmación",
+                                                        MessageBoxButtons.YesNo,
+                                                        MessageBoxIcon.Question);
+
+            if (confirmacion == DialogResult.Yes)
+            {
+                try
+                {
+                    ProductoController.EliminarProducto(codigoProducto);
+                    MessageBox.Show("Producto eliminado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarProductos();
+                    LimpiarCampos();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al eliminar el producto: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void FormularioProductos_Load(object sender, EventArgs e)

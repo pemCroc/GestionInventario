@@ -50,7 +50,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 44);
+            this.label1.Location = new System.Drawing.Point(16, 44);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(110, 13);
             this.label1.TabIndex = 0;
@@ -62,11 +62,12 @@
             this.Nombre.Name = "Nombre";
             this.Nombre.Size = new System.Drawing.Size(100, 20);
             this.Nombre.TabIndex = 1;
+            this.Nombre.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(140, 44);
+            this.label2.Location = new System.Drawing.Point(145, 44);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(104, 13);
             this.label2.TabIndex = 2;
@@ -78,11 +79,12 @@
             this.Codigo.Name = "Codigo";
             this.Codigo.Size = new System.Drawing.Size(100, 20);
             this.Codigo.TabIndex = 3;
+            this.Codigo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(307, 44);
+            this.label3.Location = new System.Drawing.Point(303, 44);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 13);
             this.label3.TabIndex = 4;
@@ -95,6 +97,7 @@
             this.Precio.Name = "Precio";
             this.Precio.Size = new System.Drawing.Size(100, 20);
             this.Precio.TabIndex = 5;
+            this.Precio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4
             // 
@@ -112,11 +115,12 @@
             this.Existencia.Name = "Existencia";
             this.Existencia.Size = new System.Drawing.Size(100, 20);
             this.Existencia.TabIndex = 7;
+            this.Existencia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(554, 44);
+            this.label5.Location = new System.Drawing.Point(556, 44);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 13);
             this.label5.TabIndex = 8;
@@ -142,7 +146,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(693, 44);
+            this.label6.Location = new System.Drawing.Point(694, 44);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 13);
             this.label6.TabIndex = 10;

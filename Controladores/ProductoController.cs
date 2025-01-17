@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 using SistemaGestionInventario.Modelos;
 
 namespace SistemaGestionInventario.Controladores
 {
+
     public class ProductoController
     {
+
         public static List<Producto> ObtenerProductos()
         {
             List<Producto> productos = new List<Producto>();
@@ -33,7 +36,6 @@ namespace SistemaGestionInventario.Controladores
 
             return productos;
         }
-
         public static void AgregarProducto(Producto producto)
         {
             using (var connection = BaseDatos.GetConnection())
@@ -51,5 +53,17 @@ namespace SistemaGestionInventario.Controladores
                 command.ExecuteNonQuery();
             }
         }
+        public static void EliminarProducto(string codigoProducto)
+        {
+            using (var connection = BaseDatos.GetConnection())
+            {
+                connection.Open();
+                string query = @"DELETE FROM Productos WHERE CodigoProducto = @CodigoProducto";
+                SQLiteCommand command = new SQLiteCommand(query, connection);
+                command.Parameters.AddWithValue("@CodigoProducto", codigoProducto);
+                command.ExecuteNonQuery();
+            }
+        }
+
     }
 }

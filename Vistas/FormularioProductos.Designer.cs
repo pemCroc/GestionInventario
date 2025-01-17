@@ -44,6 +44,12 @@
             this.Agregar = new System.Windows.Forms.Button();
             this.Editar = new System.Windows.Forms.Button();
             this.Eliminar = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.Consulta = new System.Windows.Forms.TextBox();
+            this.Consultar = new System.Windows.Forms.Button();
+            this.StockBajo = new System.Windows.Forms.Button();
+            this.CSV = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Productos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -155,17 +161,18 @@
             // Productos
             // 
             this.Productos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Productos.Location = new System.Drawing.Point(18, 109);
+            this.Productos.Location = new System.Drawing.Point(18, 138);
             this.Productos.Name = "Productos";
-            this.Productos.Size = new System.Drawing.Size(356, 285);
+            this.Productos.Size = new System.Drawing.Size(356, 229);
             this.Productos.TabIndex = 12;
+            this.Productos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Productos_CellContentClick);
             this.Productos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Productos_CellContentClick);
             // 
             // Agregar
             // 
-            this.Agregar.Location = new System.Drawing.Point(400, 109);
+            this.Agregar.Location = new System.Drawing.Point(400, 138);
             this.Agregar.Name = "Agregar";
-            this.Agregar.Size = new System.Drawing.Size(383, 54);
+            this.Agregar.Size = new System.Drawing.Size(171, 54);
             this.Agregar.TabIndex = 13;
             this.Agregar.Text = "Agregar Producto";
             this.Agregar.UseVisualStyleBackColor = true;
@@ -175,7 +182,7 @@
             // 
             this.Editar.Location = new System.Drawing.Point(400, 219);
             this.Editar.Name = "Editar";
-            this.Editar.Size = new System.Drawing.Size(383, 54);
+            this.Editar.Size = new System.Drawing.Size(171, 54);
             this.Editar.TabIndex = 14;
             this.Editar.Text = "Editar Producto";
             this.Editar.UseVisualStyleBackColor = true;
@@ -183,19 +190,83 @@
             // 
             // Eliminar
             // 
-            this.Eliminar.Location = new System.Drawing.Point(400, 328);
+            this.Eliminar.Location = new System.Drawing.Point(400, 313);
             this.Eliminar.Name = "Eliminar";
-            this.Eliminar.Size = new System.Drawing.Size(383, 54);
+            this.Eliminar.Size = new System.Drawing.Size(171, 54);
             this.Eliminar.TabIndex = 15;
             this.Eliminar.Text = "Eliminar Producto";
             this.Eliminar.UseVisualStyleBackColor = true;
             this.Eliminar.Click += new System.EventHandler(this.Eliminar_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(659, 108);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(75, 13);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Consultar por: ";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Categoria",
+            "Proveedor"});
+            this.comboBox1.Location = new System.Drawing.Point(632, 124);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 17;
+            // 
+            // Consulta
+            // 
+            this.Consulta.Location = new System.Drawing.Point(644, 172);
+            this.Consulta.Name = "Consulta";
+            this.Consulta.Size = new System.Drawing.Size(100, 20);
+            this.Consulta.TabIndex = 18;
+            // 
+            // Consultar
+            // 
+            this.Consultar.Location = new System.Drawing.Point(642, 219);
+            this.Consultar.Name = "Consultar";
+            this.Consultar.Size = new System.Drawing.Size(109, 33);
+            this.Consultar.TabIndex = 19;
+            this.Consultar.Text = "Consultar";
+            this.Consultar.UseVisualStyleBackColor = true;
+            this.Consultar.Click += new System.EventHandler(this.Consultar_Click);
+            // 
+            // StockBajo
+            // 
+            this.StockBajo.Location = new System.Drawing.Point(55, 387);
+            this.StockBajo.Name = "StockBajo";
+            this.StockBajo.Size = new System.Drawing.Size(288, 51);
+            this.StockBajo.TabIndex = 20;
+            this.StockBajo.Text = "Stock Bajo";
+            this.StockBajo.UseVisualStyleBackColor = true;
+            this.StockBajo.Click += new System.EventHandler(this.StockBajo_Click);
+            // 
+            // CSV
+            // 
+            this.CSV.BackColor = System.Drawing.Color.Lime;
+            this.CSV.Location = new System.Drawing.Point(636, 299);
+            this.CSV.Name = "CSV";
+            this.CSV.Size = new System.Drawing.Size(117, 117);
+            this.CSV.TabIndex = 22;
+            this.CSV.Text = "Exportar a CSV";
+            this.CSV.UseVisualStyleBackColor = false;
+            this.CSV.Click += new System.EventHandler(this.CSV_Click);
+            // 
             // FormularioProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(797, 451);
+            this.Controls.Add(this.CSV);
+            this.Controls.Add(this.StockBajo);
+            this.Controls.Add(this.Consultar);
+            this.Controls.Add(this.Consulta);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.Eliminar);
             this.Controls.Add(this.Editar);
             this.Controls.Add(this.Agregar);
@@ -212,6 +283,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.Nombre);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormularioProductos";
             this.Text = "FormularioProductos";
             this.Load += new System.EventHandler(this.FormularioProductos_Load);
@@ -239,5 +311,11 @@
         private System.Windows.Forms.Button Agregar;
         private System.Windows.Forms.Button Editar;
         private System.Windows.Forms.Button Eliminar;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox Consulta;
+        private System.Windows.Forms.Button Consultar;
+        private System.Windows.Forms.Button StockBajo;
+        private System.Windows.Forms.Button CSV;
     }
 }

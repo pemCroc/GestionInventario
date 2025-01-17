@@ -72,7 +72,43 @@ namespace GestiónInventario.Vistas
 
         private void Editar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(Nombre.Text) ||
+                string.IsNullOrWhiteSpace(Categoria.Text) ||
+                string.IsNullOrWhiteSpace(Precio.Text) ||
+                string.IsNullOrWhiteSpace(Existencia.Text) ||
+                string.IsNullOrWhiteSpace(Proveedor.Text))
+            {
+                MessageBox.Show("Por favor, complete todos los campos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!double.TryParse(Precio.Text, out double precio) || !int.TryParse(Existencia.Text, out int existencia))
+            {
+                MessageBox.Show("Precio y Existencia deben ser valores numéricos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            Producto productoEditado = new Producto
+            {
+                CodigoProducto = Codigo.Text.Trim(),
+                Nombre = Nombre.Text.Trim(),
+                Categoria = Categoria.Text,
+                Precio = precio,
+                Existencia = existencia,
+                Proveedor = Proveedor.Text
+            };
 
+            // Actualizar el producto en la base de datos
+            try
+            {
+                ProductoController.EditarProducto(productoEditado);
+                MessageBox.Show("Producto editado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarProductos();
+                LimpiarCampos();
+                Codigo.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al editar el producto: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void Eliminar_Click(object sender, EventArgs e)
@@ -86,8 +122,6 @@ namespace GestiónInventario.Vistas
             // Obtener la fila seleccionada
             DataGridViewRow filaSeleccionada = Productos.SelectedRows[0];
             string codigoProducto = filaSeleccionada.Cells["CodigoProducto"].Value.ToString();
-
-            // Confirmar eliminación
             DialogResult confirmacion = MessageBox.Show($"¿Está seguro de eliminar el producto con código {codigoProducto}?",
                                                         "Confirmación",
                                                         MessageBoxButtons.YesNo,
@@ -130,7 +164,123 @@ namespace GestiónInventario.Vistas
 
         private void Productos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0) 
+            {
+                DataGridViewRow filaSeleccionada = Productos.Rows[e.RowIndex];
+                Codigo.Text = filaSeleccionada.Cells["CodigoProducto"].Value.ToString();
+                Nombre.Text = filaSeleccionada.Cells["Nombre"].Value.ToString();
+                Categoria.Text = filaSeleccionada.Cells["Categoria"].Value.ToString();
+                Precio.Text = filaSeleccionada.Cells["Precio"].Value.ToString();
+                Existencia.Text = filaSeleccionada.Cells["Existencia"].Value.ToString();
+                Proveedor.Text = filaSeleccionada.Cells["Proveedor"].Value.ToString();
 
+                // Desactivar el campo Código, ya que es la clave primaria
+                Codigo.Enabled = false;
+            }
+        }
+
+        private void Consultar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(Consulta.Text) || string.IsNullOrWhiteSpace(Consulta.Text))
+            {
+                MessageBox.Show("Por favor, seleccione un criterio y proporcione un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string criterio = Consulta.Text;
+            string valor = Consulta.Text;
+            try
+            {
+                List<Producto> productos;
+                if (criterio == "Categoría")
+                {
+                    productos = ProductoController.ConsultarPorCategoria(valor);
+                }
+                else // criterio == "Proveedor"
+                {
+                    productos = ProductoController.ConsultarPorProveedor(valor);
+                }
+
+                Productos.DataSource = null; // Limpiar
+                Productos.DataSource = productos;
+
+                if (productos.Count == 0)
+                {
+                    MessageBox.Show("No se encontraron productos con el criterio proporcionado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al realizar la consulta: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void StockBajo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Producto> productos = ProductoController.ReporteStockBajo();
+
+                Productos.DataSource = null; // Limpiar
+                Productos.DataSource = productos;
+
+                if (productos.Count == 0)
+                {
+                    MessageBox.Show("No hay productos con stock bajo.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al generar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CSV_Click(object sender, EventArgs e)
+        {
+            if (Productos.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay datos para exportar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Archivo CSV|*.csv",
+                Title = "Guardar como CSV",
+                FileName = "Productos.csv"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    using (System.IO.StreamWriter sw = new System.IO.StreamWriter(saveFileDialog.FileName))
+                    {
+                        for (int i = 0; i <Productos.Columns.Count; i++)
+                        {
+                            sw.Write(Productos.Columns[i].HeaderText);
+                            if (i < Productos.Columns.Count - 1)
+                                sw.Write(",");
+                        }
+                        sw.WriteLine();
+                        foreach (DataGridViewRow row in Productos.Rows)
+                        {
+                            for (int i = 0; i < Productos.Columns.Count; i++)
+                            {
+                                sw.Write(row.Cells[i].Value?.ToString());
+                                if (i < Productos.Columns.Count - 1)
+                                    sw.Write(",");
+                            }
+                            sw.WriteLine();
+                        }
+                    }
+                    MessageBox.Show("Datos exportados exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al exportar los datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }
+

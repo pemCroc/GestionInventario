@@ -35,7 +35,7 @@ namespace GestiónInventario
                 try
                 {
                     connection.Open();
-                    MessageBox.Show("Conexión exitosa con SQLite.");
+                    MessageBox.Show("Conexión exitosa con la base de datos.");
                 }
                 catch (Exception ex)
                 {

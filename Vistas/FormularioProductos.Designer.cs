@@ -43,16 +43,18 @@
             this.Editar = new System.Windows.Forms.Button();
             this.Eliminar = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.Consulta = new System.Windows.Forms.TextBox();
+            this.Consultas = new System.Windows.Forms.ComboBox();
             this.Consultar = new System.Windows.Forms.Button();
-            this.StockBajo = new System.Windows.Forms.Button();
             this.CSV = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.PlaceHolder = new System.Windows.Forms.Label();
+            this.StockBajo = new System.Windows.Forms.Button();
+            this.Validar = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.Categoria = new System.Windows.Forms.TextBox();
             this.Proveedor = new System.Windows.Forms.TextBox();
+            this.Categoria = new System.Windows.Forms.TextBox();
+            this.TablaCompleta = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Productos)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -64,7 +66,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 13);
+            this.label1.Size = new System.Drawing.Size(135, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre del Producto";
             // 
@@ -72,7 +74,7 @@
             // 
             this.Nombre.Location = new System.Drawing.Point(7, 32);
             this.Nombre.Name = "Nombre";
-            this.Nombre.Size = new System.Drawing.Size(100, 20);
+            this.Nombre.Size = new System.Drawing.Size(100, 22);
             this.Nombre.TabIndex = 1;
             this.Nombre.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -81,16 +83,15 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(123, 16);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 13);
+            this.label2.Size = new System.Drawing.Size(127, 16);
             this.label2.TabIndex = 2;
             this.label2.Text = "Código de Producto";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // Codigo
             // 
             this.Codigo.Location = new System.Drawing.Point(121, 32);
             this.Codigo.Name = "Codigo";
-            this.Codigo.Size = new System.Drawing.Size(100, 20);
+            this.Codigo.Size = new System.Drawing.Size(100, 22);
             this.Codigo.TabIndex = 3;
             this.Codigo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -99,17 +100,16 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(264, 16);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 13);
+            this.label3.Size = new System.Drawing.Size(46, 16);
             this.label3.TabIndex = 4;
             this.label3.Text = "Precio";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // Precio
             // 
             this.Precio.Location = new System.Drawing.Point(235, 32);
             this.Precio.Name = "Precio";
-            this.Precio.Size = new System.Drawing.Size(100, 20);
+            this.Precio.Size = new System.Drawing.Size(100, 22);
             this.Precio.TabIndex = 5;
             this.Precio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -118,17 +118,16 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(257, 72);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 13);
+            this.label4.Size = new System.Drawing.Size(68, 16);
             this.label4.TabIndex = 6;
             this.label4.Text = "Existencia";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // Existencia
             // 
             this.Existencia.Location = new System.Drawing.Point(235, 86);
             this.Existencia.Name = "Existencia";
-            this.Existencia.Size = new System.Drawing.Size(100, 20);
+            this.Existencia.Size = new System.Drawing.Size(100, 22);
             this.Existencia.TabIndex = 7;
             this.Existencia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -137,18 +136,17 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(31, 68);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 13);
+            this.label5.Size = new System.Drawing.Size(66, 16);
             this.label5.TabIndex = 8;
             this.label5.Text = "Categoría";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(143, 68);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 13);
+            this.label6.Size = new System.Drawing.Size(71, 16);
             this.label6.TabIndex = 10;
             this.label6.Text = "Proveedor";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -163,6 +161,7 @@
             this.Productos.TabIndex = 12;
             this.Productos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Productos_CellContentClick);
             this.Productos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Productos_CellContentClick);
+            this.Productos.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Deseleccionar_Click);
             // 
             // Agregar
             // 
@@ -203,37 +202,33 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(120, 16);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
+            this.label7.Location = new System.Drawing.Point(117, 16);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(75, 13);
+            this.label7.Size = new System.Drawing.Size(92, 16);
             this.label7.TabIndex = 16;
             this.label7.Text = "Consultar por: ";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
-            // comboBox1
+            // Consultas
             // 
-            this.comboBox1.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.Consultas.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.Consultas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Consultas.FormattingEnabled = true;
+            this.Consultas.Items.AddRange(new object[] {
             "Categoria",
             "Proveedor"});
-            this.comboBox1.Location = new System.Drawing.Point(101, 32);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 17;
-            // 
-            // Consulta
-            // 
-            this.Consulta.BackColor = System.Drawing.SystemColors.Menu;
-            this.Consulta.Location = new System.Drawing.Point(110, 61);
-            this.Consulta.Name = "Consulta";
-            this.Consulta.Size = new System.Drawing.Size(100, 20);
-            this.Consulta.TabIndex = 18;
+            this.Consultas.Location = new System.Drawing.Point(35, 41);
+            this.Consultas.Name = "Consultas";
+            this.Consultas.Size = new System.Drawing.Size(257, 21);
+            this.Consultas.TabIndex = 17;
+            this.Consultas.SelectedIndexChanged += new System.EventHandler(this.Consulta_SelectedIndexChanged);
+            this.Consultas.Enter += new System.EventHandler(this.Label_On);
+            this.Consultas.Leave += new System.EventHandler(this.Label_Off);
             // 
             // Consultar
             // 
             this.Consultar.BackColor = System.Drawing.Color.MintCream;
-            this.Consultar.Location = new System.Drawing.Point(20, 88);
+            this.Consultar.Location = new System.Drawing.Point(14, 109);
             this.Consultar.Name = "Consultar";
             this.Consultar.Size = new System.Drawing.Size(149, 63);
             this.Consultar.TabIndex = 19;
@@ -241,22 +236,12 @@
             this.Consultar.UseVisualStyleBackColor = false;
             this.Consultar.Click += new System.EventHandler(this.Consultar_Click);
             // 
-            // StockBajo
-            // 
-            this.StockBajo.Location = new System.Drawing.Point(175, 88);
-            this.StockBajo.Name = "StockBajo";
-            this.StockBajo.Size = new System.Drawing.Size(133, 63);
-            this.StockBajo.TabIndex = 20;
-            this.StockBajo.Text = "Stock Bajo";
-            this.StockBajo.UseVisualStyleBackColor = true;
-            this.StockBajo.Click += new System.EventHandler(this.StockBajo_Click);
-            // 
             // CSV
             // 
             this.CSV.BackColor = System.Drawing.Color.Lime;
-            this.CSV.Location = new System.Drawing.Point(71, 382);
+            this.CSV.Location = new System.Drawing.Point(35, 435);
             this.CSV.Name = "CSV";
-            this.CSV.Size = new System.Drawing.Size(227, 63);
+            this.CSV.Size = new System.Drawing.Size(312, 40);
             this.CSV.TabIndex = 22;
             this.CSV.Text = "Exportar a CSV";
             this.CSV.UseVisualStyleBackColor = false;
@@ -281,18 +266,52 @@
             // 
             this.groupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.groupBox2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.groupBox2.Controls.Add(this.Consultar);
+            this.groupBox2.Controls.Add(this.PlaceHolder);
             this.groupBox2.Controls.Add(this.StockBajo);
-            this.groupBox2.Controls.Add(this.comboBox1);
-            this.groupBox2.Controls.Add(this.Consulta);
+            this.groupBox2.Controls.Add(this.Validar);
+            this.groupBox2.Controls.Add(this.Consultar);
+            this.groupBox2.Controls.Add(this.Consultas);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.groupBox2.Location = new System.Drawing.Point(457, 257);
+            this.groupBox2.Location = new System.Drawing.Point(457, 269);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(314, 170);
+            this.groupBox2.Size = new System.Drawing.Size(324, 183);
             this.groupBox2.TabIndex = 24;
             this.groupBox2.TabStop = false;
+            // 
+            // PlaceHolder
+            // 
+            this.PlaceHolder.AutoSize = true;
+            this.PlaceHolder.Location = new System.Drawing.Point(43, 44);
+            this.PlaceHolder.Name = "PlaceHolder";
+            this.PlaceHolder.Size = new System.Drawing.Size(217, 16);
+            this.PlaceHolder.TabIndex = 23;
+            this.PlaceHolder.Text = "Elige una categoria o un proveedor";
+            // 
+            // StockBajo
+            // 
+            this.StockBajo.BackColor = System.Drawing.Color.MintCream;
+            this.StockBajo.Location = new System.Drawing.Point(169, 109);
+            this.StockBajo.Name = "StockBajo";
+            this.StockBajo.Size = new System.Drawing.Size(149, 63);
+            this.StockBajo.TabIndex = 22;
+            this.StockBajo.Text = "Stock Bajo";
+            this.StockBajo.UseVisualStyleBackColor = false;
+            this.StockBajo.Click += new System.EventHandler(this.StockBajo_Click);
+            // 
+            // Validar
+            // 
+            this.Validar.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.Validar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Validar.FormattingEnabled = true;
+            this.Validar.Items.AddRange(new object[] {
+            "Categoria",
+            "Proveedor"});
+            this.Validar.Location = new System.Drawing.Point(35, 76);
+            this.Validar.Name = "Validar";
+            this.Validar.Size = new System.Drawing.Size(257, 21);
+            this.Validar.TabIndex = 21;
             // 
             // groupBox3
             // 
@@ -318,28 +337,40 @@
             this.groupBox3.TabIndex = 24;
             this.groupBox3.TabStop = false;
             // 
-            // Categoria
-            // 
-            this.Categoria.Location = new System.Drawing.Point(7, 86);
-            this.Categoria.Name = "Categoria";
-            this.Categoria.Size = new System.Drawing.Size(100, 20);
-            this.Categoria.TabIndex = 9;
-            this.Categoria.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // Proveedor
             // 
             this.Proveedor.Location = new System.Drawing.Point(121, 86);
             this.Proveedor.Name = "Proveedor";
-            this.Proveedor.Size = new System.Drawing.Size(100, 20);
+            this.Proveedor.Size = new System.Drawing.Size(100, 22);
             this.Proveedor.TabIndex = 11;
             this.Proveedor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // Categoria
+            // 
+            this.Categoria.Location = new System.Drawing.Point(7, 86);
+            this.Categoria.Name = "Categoria";
+            this.Categoria.Size = new System.Drawing.Size(100, 22);
+            this.Categoria.TabIndex = 9;
+            this.Categoria.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // TablaCompleta
+            // 
+            this.TablaCompleta.BackColor = System.Drawing.Color.MintCream;
+            this.TablaCompleta.Location = new System.Drawing.Point(35, 382);
+            this.TablaCompleta.Name = "TablaCompleta";
+            this.TablaCompleta.Size = new System.Drawing.Size(312, 47);
+            this.TablaCompleta.TabIndex = 23;
+            this.TablaCompleta.Text = "Ver Tabla Completa";
+            this.TablaCompleta.UseVisualStyleBackColor = false;
+            this.TablaCompleta.Click += new System.EventHandler(this.TablaCompleta_Click);
             // 
             // FormularioProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(810, 456);
+            this.ClientSize = new System.Drawing.Size(819, 482);
+            this.Controls.Add(this.TablaCompleta);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.CSV);
             this.Controls.Add(this.groupBox2);
@@ -376,15 +407,17 @@
         private System.Windows.Forms.Button Editar;
         private System.Windows.Forms.Button Eliminar;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox Consulta;
+        private System.Windows.Forms.ComboBox Consultas;
         private System.Windows.Forms.Button Consultar;
-        private System.Windows.Forms.Button StockBajo;
         private System.Windows.Forms.Button CSV;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox Proveedor;
         private System.Windows.Forms.TextBox Categoria;
+        private System.Windows.Forms.ComboBox Validar;
+        private System.Windows.Forms.Button StockBajo;
+        private System.Windows.Forms.Button TablaCompleta;
+        private System.Windows.Forms.Label PlaceHolder;
     }
 }

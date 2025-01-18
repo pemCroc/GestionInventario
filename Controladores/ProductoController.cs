@@ -53,6 +53,21 @@ namespace SistemaGestionInventario.Controladores
                 command.ExecuteNonQuery();
             }
         }
+
+        public static bool ProductoExistente(string codigoProducto)
+        {
+            using (var connection = BaseDatos.GetConnection())
+            {
+                connection.Open();
+                string query = "SELECT COUNT(1) FROM Productos WHERE CodigoProducto = @CodigoProducto";
+                SQLiteCommand command = new SQLiteCommand(query, connection);
+                command.Parameters.AddWithValue("@CodigoProducto", codigoProducto);
+
+                int count = Convert.ToInt32(command.ExecuteScalar());
+                return count > 0; // Retorna true si ya existe
+            }
+        }
+
         public static void EliminarProducto(string codigoProducto)
         {
             using (var connection = BaseDatos.GetConnection())
@@ -166,6 +181,45 @@ namespace SistemaGestionInventario.Controladores
                 command.ExecuteNonQuery();
             }
         }
+        public static List<string> ObtenerCategorias()
+        {
+            List<string> categorias = new List<string>();
+
+            using (var connection = BaseDatos.GetConnection())
+            {
+                connection.Open();
+                string query = "SELECT DISTINCT Categoria FROM Productos WHERE Categoria IS NOT NULL AND Categoria != ''";
+                SQLiteCommand command = new SQLiteCommand(query, connection);
+                SQLiteDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    categorias.Add(reader["Categoria"].ToString());
+                }
+            }
+
+            return categorias;
+        }
+        public static List<string> ObtenerProveedores()
+        {
+            List<string> proveedores = new List<string>();
+
+            using (var connection = BaseDatos.GetConnection())
+            {
+                connection.Open();
+                string query = "SELECT DISTINCT Proveedor FROM Productos WHERE Proveedor IS NOT NULL AND Proveedor != ''";
+                SQLiteCommand command = new SQLiteCommand(query, connection);
+                SQLiteDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    proveedores.Add(reader["Proveedor"].ToString());
+                }
+            }
+
+            return proveedores;
+        }
+
 
     }
 }

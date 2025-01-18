@@ -18,22 +18,6 @@ namespace GestiónInventario.Vistas
         {
             InitializeComponent();
         }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Agregar_Click(object sender, EventArgs e)
         {
             // Validaciones
@@ -53,6 +37,14 @@ namespace GestiónInventario.Vistas
                 MessageBox.Show("Precio y Existencia deben ser valores numéricos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            string codigoProducto = Codigo.Text.Trim();
+            if (ProductoController.ProductoExistente(codigoProducto))
+            {
+                MessageBox.Show("El código de producto ya existe. Por favor, ingrese uno diferente.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             // Creacion del producto
             Producto nuevoProducto = new Producto
             {
@@ -69,7 +61,6 @@ namespace GestiónInventario.Vistas
             MessageBox.Show("Producto agregado exitosamente.");
             LimpiarCampos();
         }
-
         private void Editar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(Nombre.Text) ||
@@ -110,7 +101,6 @@ namespace GestiónInventario.Vistas
                 MessageBox.Show($"Error al editar el producto: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void Eliminar_Click(object sender, EventArgs e)
         {
             if (Productos.SelectedRows.Count == 0)
@@ -142,7 +132,6 @@ namespace GestiónInventario.Vistas
                 }
             }
         }
-
         private void FormularioProductos_Load(object sender, EventArgs e)
         {
             CargarProductos();
@@ -161,7 +150,6 @@ namespace GestiónInventario.Vistas
             Categoria.Clear();
             Proveedor.Clear();
         }
-
         private void Productos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0) 
@@ -174,33 +162,24 @@ namespace GestiónInventario.Vistas
                 Existencia.Text = filaSeleccionada.Cells["Existencia"].Value.ToString();
                 Proveedor.Text = filaSeleccionada.Cells["Proveedor"].Value.ToString();
 
-                // Desactivar el campo Código, ya que es la clave primaria
+                // Desactivar el campo Código
                 Codigo.Enabled = false;
             }
         }
-
         private void Consultar_Click(object sender, EventArgs e)
         {
-            // Si el TextBox está vacío, mostrar toda la tabla
-            if (string.IsNullOrWhiteSpace(Consulta.Text))
+            if (string.IsNullOrWhiteSpace(Consultas.Text) || string.IsNullOrWhiteSpace(Validar.Text))
             {
-                Productos.DataSource = null;
-                Productos.DataSource = ProductoController.ObtenerProductos();
+                MessageBox.Show("Por favor, seleccione un criterio y un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (string.IsNullOrWhiteSpace(Consulta.Text))
-            {
-                MessageBox.Show("Por favor, seleccione un criterio válido para la consulta.",
-                                "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            string criterio = Consulta.Text;
-            string valor = Consulta.Text;
+            string criterio = Consultas.Text;
+            string valor = Validar.Text;     // Obtener el valor dinamico del segundo ComboBox
 
             try
             {
                 List<Producto> productos;
+
                 if (criterio == "Categoria")
                 {
                     productos = ProductoController.ConsultarPorCategoria(valor);
@@ -214,21 +193,18 @@ namespace GestiónInventario.Vistas
                     MessageBox.Show("Seleccione un criterio válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                Productos.DataSource = null; // Limpiar
+                Productos.DataSource = null;
                 Productos.DataSource = productos;
                 if (productos.Count == 0)
                 {
-                    MessageBox.Show("No se encontraron productos con el criterio proporcionado.",
-                                    "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No se encontraron productos con el criterio proporcionado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al realizar la consulta: {ex.Message}",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al realizar la consulta: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void StockBajo_Click(object sender, EventArgs e)
         {
             try
@@ -248,7 +224,6 @@ namespace GestiónInventario.Vistas
                 MessageBox.Show($"Error al generar el reporte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void CSV_Click(object sender, EventArgs e)
         {
             if (Productos.Rows.Count == 0)
@@ -295,15 +270,79 @@ namespace GestiónInventario.Vistas
                 }
             }
         }
-
-        private void label7_Click(object sender, EventArgs e)
+        private void Consulta_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string criterio = Consultas.Text;
+            Validar.Items.Clear();
 
+            try
+            {
+                if (criterio == "Categoria")
+                {
+                    List<string> categorias = ProductoController.ObtenerCategorias();
+                    Validar.Items.AddRange(categorias.ToArray());
+                }
+                else if (criterio == "Proveedor")
+                {
+                    List<string> proveedores = ProductoController.ObtenerProveedores();
+                    Validar.Items.AddRange(proveedores.ToArray());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar los valores: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
-        private void label2_Click(object sender, EventArgs e)
+        private void TablaCompleta_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Cargar todos los productos desde la base de datos
+                List<Producto> productos = ProductoController.ObtenerProductos();
+                Productos.DataSource = null; // Limpiar
+                Productos.DataSource = productos;
+                LimpiarCampos(); 
+                if (productos.Count == 0)
+                {
+                    MessageBox.Show("No hay productos en la base de datos.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar la tabla completa: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void Label_On(object sender, EventArgs e)
+        {
+            // Ocultar el Label
+            PlaceHolder.Visible = false;
+        }
+        private void Label_Off(object sender, EventArgs e)
+        {
+            // Mostrar el Label
+            if (string.IsNullOrWhiteSpace(Consultas.Text))
+            {
+                PlaceHolder.Visible = true;
+            }
+        }
+        private void Deseleccionar_Click(object sender, MouseEventArgs e)
+        {
+            // Ubicación del clic en la tabla
+            var hitTestInfo = Productos.HitTest(e.X, e.Y);
 
+            // Verificar si el clic fue en un área vacía
+            if (hitTestInfo.Type == DataGridViewHitTestType.None)
+            {
+                // Deseleccionar todas las filas si se hace clic en un área vacía
+                Productos.ClearSelection();
+                foreach (Control control in this.Controls)
+                {
+                    if (control is TextBox textBox)
+                    {
+                        textBox.Clear();
+                    }
+                }
+            }
         }
     }
 }

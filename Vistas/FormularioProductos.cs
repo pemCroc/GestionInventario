@@ -301,7 +301,8 @@ namespace GestiónInventario.Vistas
                 List<Producto> productos = ProductoController.ObtenerProductos();
                 Productos.DataSource = null; // Limpiar
                 Productos.DataSource = productos;
-                LimpiarCampos(); 
+                LimpiarCampos();
+                Codigo.Enabled = true;
                 if (productos.Count == 0)
                 {
                     MessageBox.Show("No hay productos en la base de datos.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -340,6 +341,7 @@ namespace GestiónInventario.Vistas
                     if (control is TextBox textBox)
                     {
                         textBox.Clear();
+                        Codigo.Enabled = true;
                     }
                 }
             }

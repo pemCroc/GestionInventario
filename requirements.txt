@@ -1,0 +1,31 @@
+
+## Software y Dependencias Necesarias
+
+### 1. .NET Framework o .NET Core
+- .NET Framework: Versión 4.7.2 o superior.
+
+### 2. SQLite
+- Instalar la biblioteca de SQLite a través de NuGet:
+  ```bash
+  Install-Package System.Data.SQLite
+  ```
+---
+
+## Instrucciones de Instalación
+1. **Configurar Visual Studio**
+   - Asegúrate de que los componentes necesarios estén instalados.
+   - Ve a **Herramientas > Administrar Paquetes NuGet > Administrar Paquetes para la Solución** y agrega los paquetes requeridos.
+
+2. **Base de Datos SQLite**
+   - Verifica que el archivo `Inventario.db` esté en la ruta correcta
+   - Si no existe, puedes crear el archivo con SQLite Browser o generarlo automáticamente al ejecutar el programa.
+
+3. **Configuración del String de Conexión**
+   - Confirma que el string de conexión en `BaseDatos.cs` apunte al archivo SQLite correcto:
+     ```csharp
+     private static string connectionString = @"Data Source=|DataDirectory|\Inventario.db;Version=3;";
+     ```
+
+---
+
+

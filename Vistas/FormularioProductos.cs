@@ -125,6 +125,7 @@ namespace GestiónInventario.Vistas
                     MessageBox.Show("Producto eliminado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarProductos();
                     LimpiarCampos();
+                    Codigo.Enabled = true;
                 }
                 catch (Exception ex)
                 {

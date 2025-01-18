@@ -10,7 +10,8 @@ namespace GestiónInventario
 {
     internal static class Program
     {
-
+        // Configura el subproceso principal para trabajar con STA. (@"Data Source=|DataDirectory|\Inventario.db;Version=3;";)
+        
         [STAThread]
         static void Main()
         {

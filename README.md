@@ -1,8 +1,7 @@
 ## Sistema de Gestión de Inventario
 
 ### Descripción
-Este sistema de gestión de inventario permite realizar operaciones básicas como agregar, editar y eliminar productos, gestionar categorías y proveedores, consultar productos según criterios específicos y exportar datos a formato CSV. Además, el sistema incluye validaciones para garantizar la integridad de los datos.
-
+Sistema de gestión de inventario que permite realizar operaciones básicas como agregar, editar y eliminar productos, gestionar categorías y proveedores, consultar productos y exportar datos a formato CSV. 
 ---
 
 ## Requisitos
@@ -15,7 +14,7 @@ Los detalles de los requisitos del sistema se encuentran en el archivo `requirem
 1. **Clonar el Repositorio**
    - Usa el siguiente comando para clonar el repositorio:
      ```bash
-     git clone <URL del repositorio>
+     git clone https://github.com/pemCroc/GestionInventario.git
      ```
      
 2. **Abrir el Proyecto en Visual Studio**

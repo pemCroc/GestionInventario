@@ -1,7 +1,3 @@
-# GestiónInventario
-
-# README
-
 ## Sistema de Gestión de Inventario
 
 ### Descripción

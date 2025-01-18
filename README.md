@@ -1,7 +1,8 @@
 ## Sistema de Gestión de Inventario
 
-### Descripción
+### Descripcion
 Sistema de gestión de inventario que permite realizar operaciones básicas como agregar, editar y eliminar productos, gestionar categorías y proveedores, consultar productos y exportar datos a formato CSV. 
+
 ---
 
 ## Requisitos

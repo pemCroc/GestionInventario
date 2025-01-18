@@ -1,4 +1,5 @@
 ﻿using GestiónInventario.Vistas;
+using SistemaGestionInventario.Controladores;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -14,6 +15,7 @@ namespace GestiónInventario
         [STAThread]
         static void Main()
         {
+                BaseDatos.VerificarTablas();
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new FormularioProductos());   
